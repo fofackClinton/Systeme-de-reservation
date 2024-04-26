@@ -1,0 +1,7 @@
+// main: ../semantic.less
+
+
+// *** Property Section Default ***
+
+@propertySectionTitleFontSize: 72px;
+@propertySectionTitleFontSizeMobile: 42px;

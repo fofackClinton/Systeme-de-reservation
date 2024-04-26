@@ -1,0 +1,21 @@
+// main: ../semantic.less
+
+
+// *** Various Sections Variables ***
+
+
+//  Style 01
+
+@promoBackgroundStyle01: rgba(255,108,0,0.80);
+@promoBoxShadowStyle01: none;
+
+@promoBoxHoverColor01: #FFCAA3;
+
+
+
+//  Style 02
+
+@promoBackgroundStyle02: rgba(255,108,0,0.80);
+@promoBoxShadowStyle02: none;
+
+@promoBoxHoverColor02: #FFCAA3;
