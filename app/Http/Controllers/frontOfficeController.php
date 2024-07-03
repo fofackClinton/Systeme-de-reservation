@@ -38,7 +38,7 @@ class frontOfficeController extends Controller
         $utilisateur = User::count();
         $resaAnnul = Reservation::where('Statut', 'annuler')->count();
 
-       
+
         return view('backoffice.acceuil',[
             'chambre'=>$chambre,
             'reservation'=>$reservation,
@@ -86,6 +86,29 @@ class frontOfficeController extends Controller
             Reservation::create([
                 'ID_CHAMBRE'=>$request->chambre,
                 'ID'=>$uer->id,
+                'prix'=>$request->prix,
+                'Statut'=>'Atente',
+                'Durer'=>$request->durer,
+                'DATE_DEBUT'=>$request->dateDebut,
+                'DATE_FIN'=>$request->dateFin,
+            ]);
+
+            DB::commit();
+            return to_route('acceuil')->with('success','La Réservation à eté effectuer avec sucess');
+
+        } catch (\Throwable $th) {
+            return $th;
+        }
+    }
+    public function reserverUser(Request $request)
+    {
+        try {
+
+            DB::beginTransaction();
+            //dd($uer);
+            Reservation::create([
+                'ID_CHAMBRE'=>$request->chambre,
+                'ID'=>$request->id,
                 'prix'=>$request->prix,
                 'Statut'=>'Atente',
                 'Durer'=>$request->durer,

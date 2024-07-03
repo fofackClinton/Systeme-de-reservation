@@ -90,46 +90,51 @@
 				   <div class="typo-section-sq top-default bottom-default">
 						<h2>Reservation</h2>
 				   </div>
-                   <form action="{{ route('chambReserver') }}" method="post">
+                   <form
+                   @auth
+                   action="{{ route('chambReserverUser') }}"
+                   @else
+                   action="{{ route('chambReserver') }}"
+                   @endauth  method="post">
                     {!! csrf_field() !!}
-				   <div class="white-section">
-					   <h5>Information personnel </h5>
+                    @auth
 
-						<div class="div-c inline-2">
-							<div class="divided-column">
-								<label>Nom</label>
-								<input name="nom" type="text" required placeholder="">
-                                <input type="hidden" value="{{ $dateDebut }}" name="dateDebut">
-                                <input type="hidden" value="{{ $dateFin }}" name="dateFin">
-                                <input type="hidden" value="{{ $prix }}" name="prix">
-                                <input type="hidden" value="{{ $durer }}" name="durer">
-                                <input type="hidden" value="{{ $chambre->ID_CHAMBRE }}" name="chambre">
-							</div>
+                    @else
+                    <div class="white-section">
+                        <h5>Information personnel </h5>
 
-							<div class="divided-column">
-								<label>prenom</label>
-								<input name="prenom" type="text" required placeholder=" ">
-							</div>
-						</div>
+                         <div class="div-c inline-2">
+                             <div class="divided-column">
+                                 <label>Nom</label>
+                                 <input name="nom" type="text" required placeholder="">
 
-						<div class="div-c inline-2">
-							<div class="divided-column">
-								<label>E-mail</label>
-								<input type="email" name="email" placeholder=" ">
-							</div>
+                             </div>
 
-							<div class="divided-column">
-								<label>Num de téléphone</label>
-								<input type="number" name="tel" required placeholder=" ">
-							</div>
-						</div>
+                             <div class="divided-column">
+                                 <label>prenom</label>
+                                 <input name="prenom" type="text" required placeholder=" ">
+                             </div>
+                         </div>
 
-						<div class="div-c">
-							<label>Num de piece d'identité</label>
-							<input required type="text" name="cni" placeholder=" ">
-						</div>
+                         <div class="div-c inline-2">
+                             <div class="divided-column">
+                                 <label>E-mail</label>
+                                 <input type="email" required name="email" placeholder=" ">
+                             </div>
 
-				   </div>
+                             <div class="divided-column">
+                                 <label>Num de téléphone</label>
+                                 <input type="number"  name="tel" required placeholder=" ">
+                             </div>
+                         </div>
+
+                         <div class="div-c">
+                             <label>Num de piece d'identité</label>
+                             <input required type="text" name="cni" required placeholder=" ">
+                         </div>
+
+                    </div>
+                    @endauth
                         <div class="white-section">
                             <div class="ui grid stackable">
                                 <div class="row">
@@ -160,7 +165,7 @@
                                                 <div class="extra-row">
                                                     <p class="extra-title">Prix de la chambre par nuit</p>
                                                     <p class="extra-price">
-                                                        {{ $chambre->PRIX }} XAF
+                                                        {{ number_format($chambre->PRIX  , thousands_separator: ' ') }} XAF
                                                     </p>
                                                 </div>
                                                 <div class="extra-row">
@@ -172,7 +177,7 @@
                                                 <div class="extra-row">
                                                     <p class="extra-title ">Prix total</p>
                                                     <p class="extra-price">
-                                                    {{ $prix / 0.3 }} XAF
+                                                        {{ number_format($prix / 0.3 , thousands_separator: ' ') }}XAF
                                                     </p>
                                                 </div>
                                                 <div class="extra-row link-sq">
@@ -181,11 +186,19 @@
                                                     30 % du prix total
                                                     </p>
                                                     </div>
+                                                    <input type="hidden" value="{{ $dateDebut }}" name="dateDebut">
+                                                    <input type="hidden" value="{{ $dateFin }}" name="dateFin">
+                                                    <input type="hidden" value="{{ $prix }}" name="prix">
+                                                    <input type="hidden" value="{{ $durer }}" name="durer">
+                                                    <input type="hidden" value="{{ $chambre->ID_CHAMBRE }}" name="chambre">
+                                                    @auth
+                                                    <input type="hidden" value="{{ Auth::user()->id }}" name="id">
+                                                    @endauth
 
                                                 <div class="extra-row total-sq">
                                                     <p class="extra-title">Total</p>
                                                     <p class="extra-price">
-                                                        {{ $prix }} XAF
+                                                        {{ number_format($prix , thousands_separator: ' ') }} XAF
                                                     </p>
                                                 </div>
                                             </div>
@@ -193,7 +206,9 @@
                                         </div>
                                         <br>
                                     </div>
+                                    @auth
 
+                                    @else
                                     <div class="ui six wide computer column">
                                         <h5>Payment Methods</h5>
 
@@ -222,12 +237,19 @@
                                             </div>
 
                                     </div>
+                                    @endauth
                                 </div>
 
                                 <div class="row">
                                     <div class="ui column">
                                         <br>
-                                        <button class="button-sq float-right-sq">Payer</button>
+                                        <button class="button-sq float-right-sq">
+                                            @auth
+                                                Reserver
+                                            @else
+                                                Payer
+                                            @endauth
+                                        </button>
                                     </div>
                                 </div>
                             </div>

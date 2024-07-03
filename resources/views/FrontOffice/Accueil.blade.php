@@ -37,9 +37,9 @@ Default Header with a White Background & Dark text.
 
 <a class="logo item" href="homepage.html">
 
-	<img src="{{ asset('assets/images/betuli.png') }}" srcset="{{ asset('assets/images/betuli.png 2x') }}" alt="mytent logo" class="logo-transparent">
+	{{-- <img src="{{ asset('assets/images/betuli.png') }}" srcset="{{ asset('assets/images/betuli.png 2x') }}" alt="mytent logo" class="logo-transparent">
 
-	<img src="{{ asset('assets/images/betuli.png') }}" srcset="{{ asset('assets/images/betuli.png 1x, assets/images/betuli.png 2x') }}" alt="mytent logo">
+	<img src="{{ asset('assets/images/betuli.png') }}" srcset="{{ asset('assets/images/betuli.png 1x, assets/images/betuli.png 2x') }}" alt="mytent logo"> --}}
 
 </a>
 
@@ -73,6 +73,18 @@ Default Header with a White Background & Dark text.
                 <span>Voir nos chambres</span>
                 </a>
             </li>
+            @auth
+            <li><a href="{{ route('logout') }}" class="item ">
+                <span>Deconnexion</span>
+                </a>
+            </li>
+            @else
+            <li><a href="{{ route('login') }}" class="item ">
+                <span>Connexion</span>
+                </a>
+            </li>
+            @endauth
+
         </ul>
     </div>
 
@@ -136,7 +148,7 @@ Default Header with a White Background & Dark text.
             <!--Slide 01-->
             <div>
                 <div class="caption-content">
-                   <h1 class="font-weight-bold-sq">Hôtel Bethuli</h1>
+                   <h1 class="font-weight-bold-sq">hôtel betulie</h1>
                 </div>
 
 			   <div class="caption-outside">
@@ -248,7 +260,7 @@ Default Header with a White Background & Dark text.
                         <div class="property-item">
                             <div class="property-item-inner">
 
-                            <div class="price-tag-sq">{{ $chambre->PRIX }} XAF <span>/ nuit</span></div>
+                            <div class="price-tag-sq">{{ number_format($chambre->PRIX, thousands_separator: ' ') }} XAF <span>/ nuit</span></div>
                             <a class="add-wishlist modal-ui-trigger" href="{{ route('chambresDetaile',  $chambre->ID_CHAMBRE ) }}" data-trigger-for="wishlist">
                                 <i class="icon icon-add-wishlist"></i>
                             </a>

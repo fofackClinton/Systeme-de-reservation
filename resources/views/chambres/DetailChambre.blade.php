@@ -34,7 +34,7 @@
 
                                 <div class="property-sticky-box">
                                    <div class="price-tag-sq">
-                                       <span class="price-sq">{{ $chambre->PRIX }} XAF</span>
+                                       <span class="price-sq">{{ number_format($chambre->PRIX, thousands_separator: ' ') }} XAF</span>
                                        <span class="per-sq" data-text-mobile="/ " data-text="par ">nuit</span>
                                    </div>
 
@@ -90,7 +90,7 @@
 
                                                                 <div class="calc-row">
                                                                     <div class="calc-column"><p class="desc">Total</p></div>
-                                                                    <div class="calc-column"><p class="price-sq">{{ $chambre->PRIX }} XAF</p></div>
+                                                                    <div class="calc-column"><p class="price-sq">{{ number_format($chambre->PRIX, thousands_separator: ' ') }} XAF</p></div>
                                                                 </div>
                                                             </div>
 

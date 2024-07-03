@@ -1,10 +1,10 @@
 @extends('./layouts/backoffice/backofficeLayouts')
-@section('titre', 'Gestion des Reservation' )
+@section('titre', 'Gestion des Reservations' )
 @section('page-content')
 <div class="card">
     <div class="card-header">
         <div class="">
-                <a href="{{ route('reservation.creer') }}" class="btn btn-primary">ajouter une reservation</a>
+                <a href="{{ route('reservation.creer') }}" class="btn btn-primary">Ajouter une reservation</a>
         </div>
     </div>
     <!-- /.card-header -->
@@ -13,7 +13,7 @@
         <thead>
         <tr>
           <th>Nom</th>
-          <th>chambre</th>
+          <th>case</th>
           <th>Statut</th>
           <th>prix</th>
           <th>Durée</th>
@@ -38,14 +38,14 @@
 
                     @endif
                 </td>
-                <td>{{ $reservation->prix }} XAF</td>
+                <td>{{ number_format($reservation->prix , thousands_separator: ' ') }} XAF</td>
                 <td>{{ $reservation->Durer }} jours</td>
 
                 <td>{{ \Carbon\Carbon::parse($reservation->DATE_DEBUT)->translatedFormat('d F Y à H\hi')}}</td>
                 <td>{{ \Carbon\Carbon::parse($reservation->DATE_FIN)->translatedFormat('d F Y à H\hi')}}</td>
                 <td>
                     @if ($reservation->Statut == 'annuler' || $reservation->Statut == 'Valider' )
-                    <span class="badge bg-warning"> Aucune action possibles</span>
+                    <span class="badge bg-warning"> Aucune action possible</span>
                     @else
                     <a href="{{ route('reservation.modifier',$reservation) }}" class="btn btn-primary">Modifier</a>
                     <a href="{{ route('reservation.suprimer',$reservation) }}" class="btn btn-danger">Supprimer</a>
@@ -63,7 +63,7 @@
         <tfoot>
         <tr>
             <th>Nom</th>
-            <th>chambre</th>
+            <th>case</th>
             <th>Statut</th>
             <th>prix</th>
             <th>Durée</th>

@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('devenir', function (Blueprint $table) {
-            $table->foreign(['ID_RESERVATION'], 'DEVENIR_ibfk_1')->references(['ID_RESERVATION'])->on('reservation')->onUpdate('no action')->onDelete('no action');
-            $table->foreign(['ID_OCCUPATION'], 'DEVENIR_ibfk_2')->references(['ID_OCCUPATION'])->on('occupation')->onUpdate('no action')->onDelete('no action');
+            $table->foreign(['ID_RESERVATION'], 'DEVENIR_ibfk_1')->references(['ID_RESERVATION'])->on('reservation')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign(['ID_OCCUPATION'], 'DEVENIR_ibfk_2')->references(['ID_OCCUPATION'])->on('occupation')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

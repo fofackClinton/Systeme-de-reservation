@@ -207,13 +207,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('occupation.index') }}" class="nav-link">
+                <a href="{{ route('occupation.index') }}" @class(['nav-link','active' => str_contains(request()->route()->getName(), 'occupation.i')])>
                 <i class="nav-icon fas fa-calendar-alt"></i>
                   <p>Gestion des occupation</p>
                 </a>
               </li>
-              <li @class(['nav-item','active' => str_contains(request()->route()->getName(), 'occupation.h')])>
-                <a href="{{ route('occupation.historique') }}" class="nav-link">
+              <li class="nav-item">
+                <a href="{{ route('occupation.historique') }}" @class(['nav-link','active' => str_contains(request()->route()->getName(), 'occupation.h')])>
                 <i class="fa fa-archive nav-icon" aria-hidden="true"></i>
                   <p>Historiques</p>
                 </a>
@@ -239,15 +239,15 @@
 
             </ul>
           </li>
-          <li @class(['nav-item','menu-open' => str_contains(request()->route()->getName(), 'chambre.')])>
-            <a href="{{ route('chambre.index') }}" class="nav-link">
+          <li class="nav-item">
+            <a href="{{ route('chambre.index') }}" @class(['nav-link','active' => str_contains(request()->route()->getName(), 'chambre.')])>
               <i class="fa fa-cog nav-icon" aria-hidden="true"></i>
               <p>
                Gestion des chambres
               </p></a>
          </li>
-         <li @class(['nav-item','menu-open' => str_contains(request()->route()->getName(), 'reservation.')])>
-          <a href="{{ route('reservation.index') }}" class="nav-link">
+         <li class="nav-item" >
+          <a href="{{ route('reservation.index') }}" @class(['nav-link','active' => str_contains(request()->route()->getName(), 'reservation.')])>
             <i class="fa fa-tags nav-icon" aria-hidden="true"></i>
             <p>
               Gestion des reservations

@@ -17,7 +17,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="index2.html"><b>Hôtel</b>Bethuli</a>
+    <a href="index2.html"><b>Hôtel </b>betuli</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">

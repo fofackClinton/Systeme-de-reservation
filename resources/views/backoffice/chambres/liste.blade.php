@@ -1,10 +1,10 @@
 @extends('./layouts/backoffice/backofficeLayouts')
-@section('titre', 'Gestion des chambres' )
+@section('titre', 'Gestion des cases' )
 @section('page-content')
 <div class="card">
     <div class="card-header">
         <div class="">
-                <a href="{{ route('chambre.creer') }}" class="btn btn-primary">ajouter une chambre</a>
+                <a href="{{ route('chambre.creer') }}" class="btn btn-primary">Ajouter une chambre</a>
         </div>
     </div>
     <!-- /.card-header -->
@@ -26,7 +26,7 @@
             <tr>
                 <td>{{ $chambre->NOM_CHAMBRE }}</td>
                 <td>{{ $chambre->TYPE_CHAMBRE }}</td>
-                <td>{{ $chambre->PRIX }} XAF</td>
+                <td>{{ number_format($chambre->PRIX, thousands_separator: ' ') }} XAF</td>
                 <td>{{ $chambre->NOMBRE_LITS }} {{ $chambre->TELEVISION }}</td>
                 <td>{{ $chambre->DESCRIPTION }}</td>
                 <td><img style="width:300px; height:300px " src="/storage/{{ $chambre->IMAGE }}" alt=""> </td>

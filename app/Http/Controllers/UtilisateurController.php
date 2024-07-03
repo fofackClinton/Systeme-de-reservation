@@ -34,11 +34,15 @@ class UtilisateurController extends Controller
 
         ]);
 
-        
+
         if (Auth::attempt($credentials)) {
            $request->session()->regenerate();
+            if (Auth::user()->role->NOM_ROLE == "administrateur") {
+                return redirect()->intended(route('AppAdmin'));
+            }else{
+                return redirect()->intended(route('acceuil'));
+            }
 
-        return redirect()->intended(route('AppAdmin'));
 
         }else{
             return to_route('login')->withErrors([
@@ -79,20 +83,21 @@ class UtilisateurController extends Controller
                 'ID_ROLE'=>$request->role
             ]);
         DB::commit();
-        return to_route('occupation.index');
+        return to_route('utilisateur.index');
 
         } catch (\Throwable $th) {
             //throw $th;
             return $th;
         }
     }
-
     /**
      * Display the specified resource.
      */
     public function show(User $user)
     {
-        //
+        return view('backoffice.utilisateurs.liste', [
+            'utilisateur' => User::all()
+        ]);
     }
 
     /**
@@ -114,9 +119,17 @@ class UtilisateurController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy(String $user)
     {
-        //
+        try {
+            //code...
+            DB::beginTransaction();
+             User::find($user)->delete();
+            DB::commit();
+            return to_route('utilisateur.index');
+        } catch (\Throwable $th) {
+            return $th;
+        }
     }
     /**
      * Donne les detail d'un utilisateur.

@@ -11,7 +11,7 @@
               <div class="inner">
                 <h3>{{ $chambre }}</h3>
 
-                <p>Total des chambre</p>
+                <p>Total des cases</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>

@@ -20,7 +20,7 @@
                                         <div class="property-item">
                                             <div class="property-item-inner">
 
-                                            <div class="price-tag-sq">{{ $chambre->PRIX }} XAF <span>/ nuit</span></div>
+                                            <div class="price-tag-sq">{{ number_format($chambre->PRIX, thousands_separator: ' ') }} XAF <span>/ nuit</span></div>
                                             <a class="add-wishlist modal-ui-trigger" href="{{ route('chambresDetaile',  $chambre->ID_CHAMBRE ) }}" data-trigger-for="wishlist">
                                                 <i class="icon icon-add-wishlist"></i>
                                             </a>

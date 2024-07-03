@@ -107,9 +107,17 @@ class ChambreController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CHAMBRE $cHAMBRE)
+    public function destroy(String $chambre)
     {
-        //
+        try {
+            //code...
+            DB::beginTransaction();
+             Chambre::find($chambre)->delete();
+            DB::commit();
+            return to_route('chambre.index');
+        } catch (\Throwable $th) {
+            return $th;
+        }
     }
 
     /**
